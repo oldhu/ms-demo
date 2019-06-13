@@ -1,2 +1,3 @@
 login-service/target
 user-service/app/node_modules
+.DS_Store
