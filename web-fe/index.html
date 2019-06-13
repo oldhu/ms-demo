@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MicroService Demo Web FrontEnd</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Click User To Login</p>
+        <p>{{ message }}</p>
+        <ul>
+            <li v-for="user in users">
+                <a href="#" v-on:click="login">{{ user.name }}</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                users: [
+                    { name: "user1" },
+                    { name: "user2" },
+                    { name: "user3" }
+                ]
+            },
+            methods: {
+                login: function(event) {
+                    var user = event.target.text;
+                    axios
+                        .get('/api/login?name=' + user)
+                        .then(response => (alert(response.data.msg)));
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

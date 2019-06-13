@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      module: web
+      app: ms-k8s
+  template:
+    metadata:
+      labels:
+        module: web
+        app: ms-k8s
+    spec:
+      containers:
+      - name: web
+        image: oldhu/web
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+      dnsPolicy: ClusterFirst
